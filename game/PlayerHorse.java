@@ -13,7 +13,7 @@ import java.util.Timer;
 /**
  * Created by Romych on 24.03.2016.
  */
-public class PlayerHorse extends BaseHorse{
+public class PlayerHorse extends BaseHorse {
     private static Texture myTexture;
     //private Obstacle obstacle;
 
@@ -21,62 +21,82 @@ public class PlayerHorse extends BaseHorse{
         return myTexture;
     }
 
-    public PlayerHorse(Vector2 position){
+    public PlayerHorse(Vector2 position) {
+        super();
         myTexture = new Texture("run_horse_r.png");
-
-        this.position=position;
-        this.angle=10;
-        rotateSpeed=1.0f;
-        moveSpeed=3.0f;
-        setXPoint=myTexture.getWidth()*4/5;
-        sizeH=myTexture.getHeight();
-        sizeW=myTexture.getWidth();
-        moveX = 1.0f;
+        this.position = position;
+        power = 0.5f;
+        setXPoint = myTexture.getWidth() * 4 / 5;
+        sizeH = myTexture.getHeight();
+        sizeW = myTexture.getWidth();
+        this.jumped = false;
+        this.score = 0;
+        this.health = 100;
+        this.life = true;
+        this.stuck = false;
 
     }
-    public void draw(SpriteBatch batch){
-        batch.draw(myTexture,position.x,position.y,setXPoint,myTexture.getHeight()*4/5,myTexture.getWidth(),myTexture.getHeight(),1.0f,1.0f,angle,0,0,myTexture.getWidth(),myTexture.getHeight(),false,false);
+
+    public void draw(SpriteBatch batch) {
+        batch.draw(myTexture, position.x, position.y, setXPoint, myTexture.getHeight() * 4 / 5, myTexture.getWidth(), myTexture.getHeight(), 1.0f, 1.0f, angle, 0, 0, myTexture.getWidth(), myTexture.getHeight(), false, false);
     }
 
-    public void update(Fence fence){
+    public void slowDown() {
+        super.slowDown();
+        myTexture = new Texture("run_horse.png");
+    }
+
+    public void accelerate() {
+        super.accelerate();
+        myTexture = new Texture("run_horse_r.png");
+    }
+
+    public void jump() {
+        myTexture = new Texture("jump_horse_r.png");
+    }
+
+    public void fall() {
+        myTexture = new Texture("lying_horse_r.png");
+    }
+
+
+    public void update() {
+        //super.update(fence);
         super.update();
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             //myTexture = new Texture("horse_L_1sm.png");
             //setXPoint=myTexture.getWidth()/5;
-            moveX=-2.0f;
+            //moveX=-2.0f;
             //SpriteBatch batch = new SpriteBatch();
             //drawL(batch);
-            rotate(1.0f);
+            //rotate(1.0f);
+            slowDown();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             //myTexture = new Texture("run_horse_r.png");
             //setXPoint=myTexture.getWidth()*4/5;
-            moveX=1.0f;
+            //moveX=1.0f;
             //SpriteBatch batch = new SpriteBatch();
             //drawR(batch);
-            rotate(-1.0f);
+            //rotate(-1.0f);
+            accelerate();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            moveForward();
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            //moveForward();
         }
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            jump();
+            this.jumped = true;
+        }
+        //if(this.stuck==true){
+        //    fall();
+        //}
 
-        /*if(this.position.x<fence.getPosition().x+50&&this.position.x>fence.getPosition().x-50){
-            if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-
-            }
-            else
-            //wait(10000);
-
-                myTexture = new Texture("lying_horse_r");
-            //TimeUtils.nanoTime();
-            moveSpeed=0;
-
-
-        }*/
 
 
 
     }
-
-
 }
+
+
+
