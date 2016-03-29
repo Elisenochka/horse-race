@@ -18,8 +18,10 @@ public class Fence extends Obstacle{
         this.position=position;
         //if(myTexture==null)
         //myTexture = new Texture("obstacle.png");
-        texture=new Texture(Gdx.files.internal("fence.png"));
+        texture=new Texture("fence.png");
         this.position=position;
+        sizeH=texture.getHeight();
+        sizeW=texture.getWidth();
     }
     public void draw(SpriteBatch batch){
         batch.draw(texture,position.x,position.y,100,texture.getHeight()/5,texture.getWidth(),texture.getHeight(),1.0f,1.0f,0,0,0,texture.getWidth(),texture.getHeight(),false,false);

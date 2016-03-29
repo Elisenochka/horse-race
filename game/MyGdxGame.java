@@ -39,7 +39,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		for(int i =1;i<horses.length;i++){
 			horses[i]=new BotHorse(new Vector2(rand.nextInt(Gdx.graphics.getWidth()),rand.nextInt(Gdx.graphics.getHeight())));
 		}
-		for(int i =1;i<fence.length;i++){
+		for(int i =0;i<fence.length;i++){
 			fence[i]=new Fence(new Vector2(rand.nextInt(Gdx.graphics.getWidth()), rand.nextInt(Gdx.graphics.getHeight()))) {
 			};
 		}
@@ -48,7 +48,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		update(Gdx.graphics.getDeltaTime());
+		update();
+		//update(Gdx.graphics.getDeltaTime());
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
@@ -68,11 +69,28 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.end();
 	}
 
-	public void update(float delta){
+	public void update(){
 		//fence.update();
-		for(int i =0;i<horses.length;i++){
-			horses[i].update();
+		for (int i = 0; i < horses.length; i++) {
+			if(horses[i].life=true){
+				horses[i].update();
+			}
 		}
+		for(int j = 0;j<fence.length;j++) {
+			Vector2 vlen = horses[0].getPosition().cpy().sub(fence[j].getPosition());
+			float flen = vlen.len();
+			if (flen<10&&horses[0].jumped==true){
+				horses[0].score+=1;
+			}
+			else {
+				horses[0].health-=1;
+				//horses[0].stuck=true;
+			}
+		}
+
+
+
+
 		/*horse.update();
 		if(Gdx.input.isKeyPressed(Input.Keys.UP)){
 			horse.getPosition().y++;

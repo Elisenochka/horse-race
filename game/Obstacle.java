@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class Obstacle {
 
     protected Vector2 position;
+    protected int sizeW;
+    protected int sizeH;
 
     public Vector2 getPosition() {
         return position;

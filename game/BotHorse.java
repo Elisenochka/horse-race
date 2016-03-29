@@ -12,9 +12,12 @@ public class BotHorse extends BaseHorse {
 
 
     public BotHorse(Vector2 position){
+        super();
         if(myTexture==null)
         myTexture = new Texture("run_horse_r.png");
         this.position=position;
+
+        power=0.5f;
         this.angle=0;
         rotateSpeed=1.0f;
         moveSpeed=2.0f;
@@ -28,15 +31,11 @@ public class BotHorse extends BaseHorse {
     public void draw(SpriteBatch batch){
         batch.draw(myTexture,position.x,position.y,setXPoint,myTexture.getHeight()/5,myTexture.getWidth(),myTexture.getHeight(),1.0f,1.0f,angle,0,0,myTexture.getWidth(),myTexture.getHeight(),false,false);
     }
-
-    public void update() {
+    public void update(){
         super.update();
-        if(angle>90&&angle<00){
-            myTexture = new Texture("horse_L_1smCopy.png");
-        }
-        rotate(MyGdxGame.rand.nextFloat()-0.5f);
-        moveForward();
+        accelerate();
     }
+
 
 
 
