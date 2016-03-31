@@ -25,15 +25,14 @@ public class PlayerHorse extends BaseHorse {
         super();
         myTexture = new Texture("run_horse_r.png");
         this.position = position;
-        power = 1.5f;
+        power = 1.0f;
         sizeH = myTexture.getHeight();
         sizeW = myTexture.getWidth();
         this.jumped = false;
         this.score = 0;
         this.health = 100;
-        this.life = true;
         this.stuck = false;
-        this.rotateSpeed=5.0f;
+        this.rotateSpeed=1.0f;
         this.angle=0;
     }
 
@@ -43,7 +42,7 @@ public class PlayerHorse extends BaseHorse {
 
     public void slowDown() {
         super.slowDown();
-        myTexture = new Texture("run_horse.png");
+        myTexture = new Texture("run_horse2_l.png");
     }
 
     public void accelerate() {
@@ -53,7 +52,12 @@ public class PlayerHorse extends BaseHorse {
 
     public void fly(){
         super.fly();
-        myTexture = new Texture("pre_jump_horse_r.png");
+        myTexture = new Texture("run_horse3_r.png");
+    }
+
+    public void flyBack(){
+        super.flyBack();
+        myTexture = new Texture("run_horse3_l.png");
     }
 
     public void jump() {
@@ -89,6 +93,10 @@ public class PlayerHorse extends BaseHorse {
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             //moveForward();
             fly();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            //moveForward();
+            flyBack();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             jump();
