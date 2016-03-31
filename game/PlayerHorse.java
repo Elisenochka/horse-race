@@ -25,8 +25,7 @@ public class PlayerHorse extends BaseHorse {
         super();
         myTexture = new Texture("run_horse_r.png");
         this.position = position;
-        power = 0.5f;
-        setXPoint = myTexture.getWidth() * 4 / 5;
+        power = 1.5f;
         sizeH = myTexture.getHeight();
         sizeW = myTexture.getWidth();
         this.jumped = false;
@@ -34,11 +33,12 @@ public class PlayerHorse extends BaseHorse {
         this.health = 100;
         this.life = true;
         this.stuck = false;
-
+        this.rotateSpeed=5.0f;
+        this.angle=0;
     }
 
     public void draw(SpriteBatch batch) {
-        batch.draw(myTexture, position.x, position.y, setXPoint, myTexture.getHeight() * 4 / 5, myTexture.getWidth(), myTexture.getHeight(), 1.0f, 1.0f, angle, 0, 0, myTexture.getWidth(), myTexture.getHeight(), false, false);
+        batch.draw(myTexture, position.x, position.y, myTexture.getWidth()/2, myTexture.getHeight()/2, myTexture.getWidth(), myTexture.getHeight(), 1.0f, 1.0f, angle, 0, 0, myTexture.getWidth(), myTexture.getHeight(), false, false);
     }
 
     public void slowDown() {
@@ -49,6 +49,11 @@ public class PlayerHorse extends BaseHorse {
     public void accelerate() {
         super.accelerate();
         myTexture = new Texture("run_horse_r.png");
+    }
+
+    public void fly(){
+        super.fly();
+        myTexture = new Texture("pre_jump_horse_r.png");
     }
 
     public void jump() {
@@ -83,6 +88,7 @@ public class PlayerHorse extends BaseHorse {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             //moveForward();
+            fly();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             jump();
