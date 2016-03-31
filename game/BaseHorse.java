@@ -35,6 +35,7 @@ public abstract class BaseHorse {
         this.velocity=new Vector2(0.0f,0.0f);
         this.acceleration=new Vector2(0.0f,0.0f);
         this.angle = 0;
+        this.life = true;
 
     }
 
@@ -48,18 +49,24 @@ public abstract class BaseHorse {
         angle+=a*rotateSpeed;
     }
     public void accelerate(){
-        acceleration=new Vector2(1.0f,0.0f).rotate(0).scl(power);
+        acceleration=new Vector2(1.0f,0.0f).rotate(angle).scl(power);
         velocity.add(acceleration);
     }
 
     public void slowDown(){
-        acceleration=new Vector2(1.0f,0.0f).rotate(-180).scl(power);
+        acceleration=new Vector2(-1.0f,0.0f).rotate(angle).scl(power);
         velocity.add(acceleration);
     }
 
     public void fly(){
-        rotate(angle+5.0f);
-        acceleration = new Vector2(1.0f,0.0f).rotate(5).scl(power);
+        //rotate(angle+5.0f);
+        acceleration = new Vector2(1.0f,1.0f).rotate(angle).scl(power);
+        velocity.add(acceleration);
+    }
+
+    public void flyBack(){
+        //rotate(angle+5.0f);
+        acceleration = new Vector2(-1.0f,-1.0f).rotate(angle).scl(power);
         velocity.add(acceleration);
     }
     //public void accelerate(){
@@ -68,10 +75,10 @@ public abstract class BaseHorse {
     public void update() {
         position.add(velocity);
         velocity.scl(0,99);
-        if(position.x> Gdx.graphics.getWidth()) position.x = -sizeW;
-        if(position.x<-sizeW) position.x=Gdx.graphics.getWidth();
-        if(position.y>Gdx.graphics.getHeight()) position.y = -sizeH;;
-        if(position.y<-sizeH) position.y=Gdx.graphics.getHeight();
+        if(position.x> Gdx.graphics.getWidth()) position.x = -sizeW/8;
+        if(position.x<-sizeW/8) position.x=Gdx.graphics.getWidth();
+        if(position.y>Gdx.graphics.getHeight()) position.y = -sizeH/8;
+        if(position.y<-sizeH/8) position.y=Gdx.graphics.getHeight();
     }
 
 }
