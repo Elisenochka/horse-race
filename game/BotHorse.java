@@ -27,7 +27,7 @@ public class BotHorse extends BaseHorse {
         action=BotState.RUN_FW;
         power=1.5f;
         this.angle=0;
-
+        this.rotateSpeed =1;
         sizeH=myTexture.getHeight();
         sizeW=myTexture.getWidth();
         moveX = 1.0f;
@@ -36,14 +36,14 @@ public class BotHorse extends BaseHorse {
     public void slowDown() {
         super.slowDown();
         if(MyGdxGame.rand.nextInt()==1)
-            myTexture = new Texture("pre_jump_horse_l.png");
-        else myTexture = new Texture("run_horse.png");
+            myTexture = new Texture("run_horse3_l.png");
+        else myTexture = new Texture("run_horse2_l.png");
     }
 
     public void accelerate() {
         super.accelerate();
         if(MyGdxGame.rand.nextInt()==1)
-            myTexture = new Texture("pre_jump_horse_r.png");
+            myTexture = new Texture("run_horse3_r.png");
         else myTexture = new Texture("run_horse_r.png");
     }
 
