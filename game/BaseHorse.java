@@ -17,8 +17,7 @@ public abstract class BaseHorse {
 
     protected float angle;
     protected float rotateSpeed;
-    protected float moveSpeed;
-    protected float setXPoint;
+
     protected int sizeW;
     protected int sizeH;
     protected float moveX;
@@ -28,6 +27,8 @@ public abstract class BaseHorse {
     boolean jumped;
     int score;
     boolean stuck;
+    float currentTime;
+    float nextTime;
 
     public BaseHorse() {
         //this.position=position;
@@ -43,16 +44,22 @@ public abstract class BaseHorse {
         return position;
     }
 
-    /*public void rotate(float a){
+    public void rotate(float a){
         angle+=a*rotateSpeed;
-    }*/
+    }
     public void accelerate(){
-        acceleration=new Vector2(1.0f,0.0f).rotate(angle).scl(power);
+        acceleration=new Vector2(1.0f,0.0f).rotate(0).scl(power);
         velocity.add(acceleration);
     }
 
     public void slowDown(){
-        acceleration=new Vector2(1.0f,0.0f).rotate(angle - 180).scl(power);
+        acceleration=new Vector2(1.0f,0.0f).rotate(-180).scl(power);
+        velocity.add(acceleration);
+    }
+
+    public void fly(){
+        rotate(angle+5.0f);
+        acceleration = new Vector2(1.0f,0.0f).rotate(5).scl(power);
         velocity.add(acceleration);
     }
     //public void accelerate(){
@@ -60,11 +67,11 @@ public abstract class BaseHorse {
     //}
     public void update() {
         position.add(velocity);
-        velocity.scl(0, 99);
-        if(position.x> Gdx.graphics.getWidth()) position.x = -sizeW/5;
-        if(position.x<-sizeW/5) position.x=Gdx.graphics.getWidth();
-        if(position.y>Gdx.graphics.getHeight()) position.y = -sizeH/5;;
-        if(position.y<-sizeH/5) position.y=Gdx.graphics.getHeight();
+        velocity.scl(0,99);
+        if(position.x> Gdx.graphics.getWidth()) position.x = -sizeW;
+        if(position.x<-sizeW) position.x=Gdx.graphics.getWidth();
+        if(position.y>Gdx.graphics.getHeight()) position.y = -sizeH;;
+        if(position.y<-sizeH) position.y=Gdx.graphics.getHeight();
     }
 
 }
