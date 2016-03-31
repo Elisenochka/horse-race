@@ -79,13 +79,14 @@ public class MyGdxGame extends ApplicationAdapter {
 		for(int j = 0;j<fence.length;j++) {
 			Vector2 vlen = horses[0].getPosition().cpy().sub(fence[j].getPosition());
 			float flen = vlen.len();
-			if (flen<10&&horses[0].jumped==true){
-				horses[0].score+=1;
+			if (flen<50){
+				if(horses[0].jumped==true){
+					horses[0].score+=1;
+				}
+				//else horses[0].health-=1;
 			}
-			else {
-				horses[0].health-=1;
+
 				//horses[0].stuck=true;
-			}
 		}
 
 
