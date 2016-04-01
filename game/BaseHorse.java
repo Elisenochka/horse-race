@@ -14,7 +14,7 @@ public abstract class BaseHorse {
     protected Vector2 velocity;
     protected Vector2 acceleration;
     protected float power;
-
+    protected static Texture myTexture;
     protected float angle;
     protected float rotateSpeed;
 
@@ -29,6 +29,7 @@ public abstract class BaseHorse {
     boolean stuck;
     float currentTime;
     float nextTime;
+    Vector2 direction;
 
     public BaseHorse() {
         //this.position=position;
@@ -36,7 +37,14 @@ public abstract class BaseHorse {
         this.acceleration=new Vector2(0.0f,0.0f);
         this.angle = 0;
         this.life = true;
-
+        this.rotateSpeed=0.1f;
+        this.angle=0;
+        this.jumped = false;
+        this.score = 0;
+        this.health = 100;
+        this.stuck = false;
+        this.power=0.1f;
+        direction=new Vector2(0.0f,0.0f);
     }
 
     public abstract void draw(SpriteBatch batch);
@@ -49,32 +57,54 @@ public abstract class BaseHorse {
         angle+=a*rotateSpeed;
     }
     public void accelerate(){
-        acceleration=new Vector2(1.0f,0.0f).rotate(angle).scl(power);
+
+        this.myTexture=new Texture("run_horse2_r.png");
+        angle=0;
+        rotate(angle);
+        direction=new Vector2(1.0f,0.0f);
+        acceleration=direction.rotate(angle).scl(power);
         velocity.add(acceleration);
     }
 
     public void slowDown(){
-        acceleration=new Vector2(-1.0f,0.0f).rotate(angle).scl(power);
+        angle=0;
+        this.myTexture=new Texture("run_horse2_l.png");
+        rotate(angle);
+        direction=new Vector2(-1.0f,0.0f);
+        acceleration=direction.rotate(angle).scl(power);
         velocity.add(acceleration);
     }
 
     public void fly(){
         //rotate(angle+5.0f);
-        acceleration = new Vector2(1.0f,1.0f).rotate(angle).scl(power);
+        if(angle+5>-30&&angle+5<30){}
+        else angle+=5;
+        rotate(angle);
+        direction=new Vector2(0.0f,1.0f);
+        acceleration = direction.rotate(angle).scl(power);
         velocity.add(acceleration);
     }
 
     public void flyBack(){
         //rotate(angle+5.0f);
-        acceleration = new Vector2(-1.0f,-1.0f).rotate(angle).scl(power);
+        if(angle+5>-30&&angle+5<30){}
+        else angle+=5;
+        rotate(angle);
+        direction=new Vector2(0.0f,-1.0f);
+        acceleration = direction.rotate(angle).scl(power);
         velocity.add(acceleration);
     }
     //public void accelerate(){
     //    velocity.add(new Vector2(1.0f,0.0f).rotate(angle).scl(power));
     //}
     public void update() {
+        //if (angle>-30&&angle<30)
+          //  this.myTexture=
         position.add(velocity);
-        velocity.scl(0,99);
+        //power-=0.01f;
+        //velocity.scl(0,6f);
+        //angle=0;
+
         if(position.x> Gdx.graphics.getWidth()) position.x = -sizeW/8;
         if(position.x<-sizeW/8) position.x=Gdx.graphics.getWidth();
         if(position.y>Gdx.graphics.getHeight()) position.y = -sizeH/8;
