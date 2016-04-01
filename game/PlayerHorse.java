@@ -71,6 +71,10 @@ public class PlayerHorse extends BaseHorse {
     public void update() {
         //super.update(fence);
         super.update();
+        if(this.overcome==true){
+            this.myTexture=new Texture("land_horse1_r.png");
+            this.overcome=false;
+        }
 
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
@@ -99,7 +103,7 @@ public class PlayerHorse extends BaseHorse {
             //moveForward();
             flyBack();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             jump();
             this.jumped = true;
         }
