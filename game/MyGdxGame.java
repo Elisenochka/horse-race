@@ -71,11 +71,12 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	public void update(){
 		//fence.update();
-		for (int i = 0; i < horses.length; i++) {
-			if(horses[i].life=true){
-				horses[i].update();
-			}
-		}
+		horses[0].update();
+		//for (int i = 0; i < horses.length; i++) {
+		//	if(horses[i].life=true){
+		//		horses[i].update();
+		//	}
+		//}
 		for(int j = 0;j<fence.length;j++) {
 			Vector2 vlen = horses[0].getPosition().cpy().sub(fence[j].getPosition());
 			float flen = vlen.len();
