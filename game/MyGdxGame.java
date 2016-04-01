@@ -17,7 +17,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	//Texture img;
 	//Horse horse = new Horse(new Vector2(100,100),new Vector2(10,10),10);
-	BaseHorse[] horses = new BaseHorse[10];
+	BaseHorse[] horses = new BaseHorse[5];
 	Obstacle[] fence = new Obstacle[5];
 	//Obstacle ob = new Obstacle(new Vector2());
 	public static Random rand = new Random();
@@ -83,7 +83,9 @@ public class MyGdxGame extends ApplicationAdapter {
 			if (flen<50){
 				if(horses[0].jumped==true){
 					horses[0].score+=1;
+					horses[0].overcome=true;
 					horses[0].jumped(fence[j]);
+					horses[0].jumped=false;
 				}
 				//else horses[0].health-=1;
 			}
