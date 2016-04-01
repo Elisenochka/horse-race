@@ -23,17 +23,10 @@ public class PlayerHorse extends BaseHorse {
 
     public PlayerHorse(Vector2 position) {
         super();
-        myTexture = new Texture("run_horse_r.png");
+        myTexture = new Texture("run_horse2_r.png");
         this.position = position;
-        power = 1.0f;
         sizeH = myTexture.getHeight();
         sizeW = myTexture.getWidth();
-        this.jumped = false;
-        this.score = 0;
-        this.health = 100;
-        this.stuck = false;
-        this.rotateSpeed=1.0f;
-        this.angle=0;
     }
 
     public void draw(SpriteBatch batch) {
@@ -47,7 +40,7 @@ public class PlayerHorse extends BaseHorse {
 
     public void accelerate() {
         super.accelerate();
-        myTexture = new Texture("run_horse_r.png");
+        myTexture = new Texture("run_horse2_r.png");
     }
 
     public void fly(){
