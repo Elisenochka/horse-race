@@ -62,6 +62,9 @@ public class BotHorse extends BaseHorse {
             case FLY_BW:
                 slowDown();
                 break;
+            case REST:
+                stop();
+                break;
         }
         //accelerate();
 
