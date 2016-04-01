@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 public class BotHorse extends BaseHorse {
 
     private enum BotState{
-        FLY_FW,RUN_FW,RUN_BW
+        FLY_FW,FLY_BW,RUN_FW,RUN_BW,REST
     }
 
     private static Texture myTexture;
@@ -20,14 +20,11 @@ public class BotHorse extends BaseHorse {
     public BotHorse(Vector2 position){
         super();
         if(myTexture==null)
-        myTexture = new Texture("run_horse_r.png");
+        myTexture = new Texture("run_horse2_r.png");
         this.position=position;
         currentTime = 0.0f;
         nextTime = 0.0f;
         action=BotState.RUN_FW;
-        power=1.5f;
-        this.angle=0;
-        this.rotateSpeed =1;
         sizeH=myTexture.getHeight();
         sizeW=myTexture.getWidth();
         moveX = 1.0f;
@@ -62,7 +59,9 @@ public class BotHorse extends BaseHorse {
             case RUN_BW:
                 slowDown();
                 break;
-
+            case FLY_BW:
+                slowDown();
+                break;
         }
         //accelerate();
 
@@ -70,7 +69,7 @@ public class BotHorse extends BaseHorse {
         if(currentTime>nextTime){
             nextTime = 1.0f+MyGdxGame.rand.nextFloat()*1.0f;
             currentTime=0;
-            action=BotState.values()[MyGdxGame.rand.nextInt(3)];
+            action=BotState.values()[MyGdxGame.rand.nextInt(5)];
 
         }
     }
