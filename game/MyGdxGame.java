@@ -83,6 +83,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			if (flen<50){
 				if(horses[0].jumped==true){
 					horses[0].score+=1;
+					horses[0].jumped(fence[j]);
 				}
 				//else horses[0].health-=1;
 			}
