@@ -26,6 +26,7 @@ public abstract class BaseHorse {
     protected int health;
     boolean jumped;
     int score;
+    boolean overcome;
     boolean stuck;
     float currentTime;
     float nextTime;
@@ -40,6 +41,7 @@ public abstract class BaseHorse {
         this.rotateSpeed=0.1f;
         this.angle=0;
         this.jumped = false;
+        this.overcome=false;
         this.score = 0;
         this.health = 100;
         this.stuck = false;
