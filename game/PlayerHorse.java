@@ -53,6 +53,12 @@ public class PlayerHorse extends BaseHorse {
         myTexture = new Texture("run_horse3_l.png");
     }
 
+    @Override
+    public void jumped(Obstacle obstacle) {
+        super.jumped(obstacle);
+
+    }
+
     public void jump() {
         myTexture = new Texture("jump_horse_r.png");
     }
@@ -65,6 +71,8 @@ public class PlayerHorse extends BaseHorse {
     public void update() {
         //super.update(fence);
         super.update();
+
+
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             //myTexture = new Texture("horse_L_1sm.png");
             //setXPoint=myTexture.getWidth()/5;
@@ -94,6 +102,10 @@ public class PlayerHorse extends BaseHorse {
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             jump();
             this.jumped = true;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT)) {
+            stop();
+
         }
         //if(this.stuck==true){
         //    fall();
