@@ -94,6 +94,14 @@ public abstract class BaseHorse {
         acceleration = direction.rotate(angle).scl(power);
         velocity.add(acceleration);
     }
+    public void stop(){
+        velocity.add(-velocity.x/2,-velocity.y/2).rotate(-angle).scl(power/10);
+    }
+    public void jumped(Obstacle obstacle){
+            this.myTexture=new Texture("land_horse1_r.png");
+            position.add(obstacle.sizeW,0);
+
+    }
     //public void accelerate(){
     //    velocity.add(new Vector2(1.0f,0.0f).rotate(angle).scl(power));
     //}
